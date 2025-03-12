@@ -1,5 +1,5 @@
 {
-  "name": "dashboard",
+  "name": "int-dashboard",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,9 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.0.13",
+    "@tailwindcss/vite": "^4.0.12",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-icons": "^5.5.0",
+    "react-router": "^7.3.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
