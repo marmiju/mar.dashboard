@@ -4,17 +4,18 @@ import { Sidebardata } from "../../Data/Sidebardata";
 import { SetStateAction, useState } from "react";
 
 export const Sidebar = () => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [activeIndex, setActiveIndex] = useState(0); // Store the active item index
+    const [isOpen, setIsOpen] = useState(true);
+    const [activePath, setactivePath] = useState(window.location.pathname); // Store the active item index
 
     const click = () => {
         setIsOpen(!isOpen);
         console.log(isOpen);
     };
 
-    const activeClick = (index: number) => {
-        setActiveIndex(index);
-        console.log(index);
+    const activeClick = (link: string) => {
+        setactivePath(link);
+        window.location.pathname = link
+        console.log(link);
     }
 
     return (
@@ -31,8 +32,8 @@ export const Sidebar = () => {
                     Sidebardata.map((data, index) => (
                         <div
                             key={index}
-                            onClick={() => activeClick(index)}
-                            className={`hover:bg-[#ffff] hover:text-black rounded-md ${activeIndex === index ? 'bg-black text-white' : ''}`} // Change color based on activeIndex
+                            onClick={() => activeClick(data.link)}
+                            className={`hover:bg-[#ffff] hover:text-black rounded-md ${activePath === data.link ? 'bg-black text-white' : ''}`} // Change color based on activeIndex
                         >
                             <IconButton item={data} isOpen={isOpen} />
                         </div>
