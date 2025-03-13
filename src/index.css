@@ -19,12 +19,24 @@ body {
     @apply bg-gradient-to-t from-[#f1f1f1] to-slate-300
 }
 
+.bg-l {
+    @apply bg-gradient-to-l from-[#f1f1f1] to-slate-300
+}
+
+.bg-r {
+    @apply bg-gradient-to-r from-[#f1f1f1] to-slate-300
+}
+
 .bg-tr {
     @apply bg-gradient-to-tr from-[#f1f1f1] to-slate-300
 }
 
 .bg-br {
     @apply bg-gradient-to-br from-[#f1f1f1] to-slate-300
+}
+
+.bg-bl {
+    @apply bg-gradient-to-bl from-[#f1f1f1] to-slate-300
 }
 
 /* Define the sliding animation */
