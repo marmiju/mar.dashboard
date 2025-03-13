@@ -19,10 +19,10 @@ export const Sidebar = () => {
     }
 
     return (
-        <div className="px-2 justify-center h-screen bg-gradient-to-br from-[#e7e7e7] to-slate-300 shadow-lg border border-gray-200 rounded-lg items-start mx-2">
+        <div className="px-2 h-screen justify-center bg-gradient-to-br from-[#e7e7e7] to-slate-300 shadow-lg border border-gray-200 rounded-lg items-start mx-2">
 
             {/* Menu Button */}
-            <div onClick={click} className="border-b-2 border-[#ffffff] mb-4">
+            <div onClick={click} className="border-b-2 border-[#f8f8f8ea] mb-4">
                 <IconButton key="menu" item={{ icon: <RiMenuFold4Fill />, title: 'Menu' }} isOpen={isOpen} />
             </div>
 
@@ -40,6 +40,7 @@ export const Sidebar = () => {
                     ))
                 }
             </div>
+
         </div>
     );
 };

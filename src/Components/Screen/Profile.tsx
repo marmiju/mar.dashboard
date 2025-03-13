@@ -2,6 +2,13 @@ import React from 'react'
 
 export const Profile = () => {
     return (
-        <div>Profile</div>
+        <div className=''>
+            <div className='flex'>
+                <div>60</div>
+
+            </div>
+            <div></div>
+
+        </div>
     )
 }

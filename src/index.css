@@ -6,3 +6,61 @@
 /* * {
     @apply border
 } */
+
+body {
+    @apply bg-gradient-to-t from-[#f1f1f1] to-slate-300
+}
+
+.bg-b {
+    @apply bg-gradient-to-b from-[#f1f1f1] to-slate-300
+}
+
+.bg-t {
+    @apply bg-gradient-to-t from-[#f1f1f1] to-slate-300
+}
+
+.bg-tr {
+    @apply bg-gradient-to-tr from-[#f1f1f1] to-slate-300
+}
+
+.bg-br {
+    @apply bg-gradient-to-br from-[#f1f1f1] to-slate-300
+}
+
+/* Define the sliding animation */
+@keyframes slideIn {
+    0% {
+        transform: translateX(100%);
+        /* Start from the right */
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        /* End at the original position */
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    0% {
+        transform: translateX(0);
+        /* Start from the original position */
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(-100%);
+        /* Move to the left */
+        opacity: 0;
+    }
+}
+
+/* Add the sliding animation classes */
+.animate-slide-in {
+    animation: slideIn 0.2s ease-in-out forwards;
+}
+
+.animate-slide-out {
+    animation: slideOut 0.2s ease-in-out forwards;
+}
