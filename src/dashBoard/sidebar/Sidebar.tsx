@@ -19,7 +19,7 @@ export const Sidebar = () => {
     }
 
     return (
-        <div className="px-2 h-screen justify-center bg-gradient-to-br from-[#e7e7e7] to-slate-300 shadow-lg border border-gray-200 rounded-lg items-start mx-2">
+        <div className="px-2  h-svh justify-center bg-gradient-to-br from-[#e7e7e7] to-slate-300 shadow-lg border border-gray-200 rounded-lg items-start mx-2">
 
             {/* Menu Button */}
             <div onClick={click} className="border-b-2 border-[#f8f8f8ea] mb-4">
@@ -33,7 +33,7 @@ export const Sidebar = () => {
                         <div
                             key={index}
                             onClick={() => activeClick(data.link)}
-                            className={`hover:bg-[#ffff] hover:text-black rounded-md ${activePath === data.link ? 'bg-black text-white' : ''}`} // Change color based on activeIndex
+                            className={`hover:bg-[#ffff] hover:text-gray-700 font-bold rounded-md ${activePath === data.link ? 'bg-black text-white' : ''}`} // Change color based on activeIndex
                         >
                             <IconButton item={data} isOpen={isOpen} />
                         </div>

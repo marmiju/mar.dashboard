@@ -11,7 +11,7 @@ export type Root = [
 ]
 
 
-const API_URL = "http://localhost:3000/api/skills";
+const API_URL = "http://localhost:5000/api/skills";
 
 export const useSkills = () => {
     const [skills, setSkills] = useState<Root | null>(null);

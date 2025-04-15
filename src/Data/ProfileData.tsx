@@ -12,7 +12,7 @@ export interface Root {
     quats: string[];
 }
 
-const API_URL = "http://localhost:3000/api/profile"; // Adjust your API endpoint
+const API_URL = "http://localhost:5000/api/profile"; // Adjust your API endpoint
 
 export const useProfileData = () => {
     const [profileData, setProfileData] = useState<Root | null>(null);
