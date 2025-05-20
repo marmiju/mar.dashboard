@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import { Modal } from "../modal/modal"; // import your modal
+import { DeleteSkill } from "../../Function/DeleteSkill";
 
-type skillstype = {
-  id: string;
+type skilltype = {
+  _id: string;
   title: string;
   description?: string;
   url: string;
+  cetagory: string;
 };
 
 type propt = {
-  items: skillstype;
+  items: skilltype;
 };
 
 export const Skillsitems: React.FC<propt> = ({ items }) => {
@@ -19,6 +21,7 @@ export const Skillsitems: React.FC<propt> = ({ items }) => {
   const closeModal = () => setIsModalOpen(false);
 
   const confirmDelete = () => {
+    DeleteSkill({ id: items._id });
     closeModal();
   };
 
@@ -28,6 +31,7 @@ export const Skillsitems: React.FC<propt> = ({ items }) => {
         isOpen={isModalOpen}
         onClose={closeModal}
         onConfirm={confirmDelete}
+        id={items._id}
         title="Confirm Deletion"
         message={`Are you sure you want to delete "${items.title}"?`}
       />
@@ -37,7 +41,7 @@ export const Skillsitems: React.FC<propt> = ({ items }) => {
           {items.title}
         </h1>
         <h1 className="flex flex-[50%] line-clamp-2 truncate text-sm items-center">
-          {items.description}
+          {items.cetagory || "Undefind"}
         </h1>
         <div className="gap-2 flex text-gray-700">
           <button>Edit</button>

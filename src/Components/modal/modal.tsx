@@ -7,21 +7,24 @@ type ModalProps = {
   onConfirm: () => void;
   title: string;
   message: string;
+  id: string;
 };
 
 export const Modal: React.FC<ModalProps> = ({
   isOpen,
   onClose,
   onConfirm,
+  id,
   title,
   message,
 }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 transition-all duration-300 z-50 flex items-center justify-center   backdrop-blur-[2px]">
+    <div className="fixed inset-0 transition-all duration-300 z-50 flex items-center justify-center  backdrop-blur-[2px]">
       <div className=" bg-white bg-opacity-100 rounded-lg p-6 shadow-lg max-w-sm w-full">
         <h2 className="text-lg font-semibold mb-2">{title}</h2>
+        <h2 className="text-sm text-slate-500">{`id:${id}`}</h2>
         <p className="text-gray-700 mb-4">{message}</p>
         <div className="flex justify-end space-x-3">
           <button
