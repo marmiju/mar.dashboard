@@ -1,24 +1,28 @@
 import React, { useState } from "react";
-import { Modal } from "../modal/modal"; // import your modal
+import { Modal } from "../modal/deleteModal"; // import your modal
 import { DeleteSkill } from "../../Function/DeleteSkill";
+import { BiEdit, BiEditAlt } from "react-icons/bi";
+import { UpdateModal } from "../modal/Updatemodal";
 
-type skilltype = {
+export interface skilltype {
   _id: string;
   title: string;
   description?: string;
   url: string;
   cetagory: string;
-};
+}
 
 type propt = {
   items: skilltype;
 };
 
 export const Skillsitems: React.FC<propt> = ({ items }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpendelete, setIsModalOpendelete] = useState(false);
+  const [isModalOpenupdate, setIsModalOpenupdate] = useState(false);
 
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  const openModaldelet = () => setIsModalOpendelete(true);
+  const openModalUpdate = () => setIsModalOpenupdate(true);
+  const closeModal = () => setIsModalOpenupdate(false);
 
   const confirmDelete = () => {
     DeleteSkill({ id: items._id });
@@ -27,8 +31,16 @@ export const Skillsitems: React.FC<propt> = ({ items }) => {
 
   return (
     <>
+      <UpdateModal
+        isOpen={isModalOpenupdate}
+        onClose={closeModal}
+        title={"Update"}
+        message={`Update Data Of : ${items.title}`}
+        onConfirm={() => {}}
+        item={items}
+      />
       <Modal
-        isOpen={isModalOpen}
+        isOpen={isModalOpendelete}
         onClose={closeModal}
         onConfirm={confirmDelete}
         id={items._id}
@@ -44,8 +56,10 @@ export const Skillsitems: React.FC<propt> = ({ items }) => {
           {items.cetagory || "Undefind"}
         </h1>
         <div className="gap-2 flex text-gray-700">
-          <button>Edit</button>
-          <button className="text-red-500" onClick={openModal}>
+          <button onClick={openModalUpdate} className="text-xl">
+            <BiEditAlt />
+          </button>
+          <button className="text-red-500" onClick={openModaldelet}>
             del
           </button>
         </div>
