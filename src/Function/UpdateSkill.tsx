@@ -1,33 +1,38 @@
-import axios from "axios";
-import React from "react";
-type skillprops = {
-  item: {
-    id: string;
-    title: string;
-    description: string;
-    url: string;
-    cetagory: string;
-  };
+type SkillItem = {
+  id: string;
+  title: string;
+  description: string;
+  url: string;
+  cetagory: string;
 };
 
-export const UpdateSkill: React.FC<skillprops> = async ({ item }) => {
+export const updateSkill = async (item: SkillItem) => {
   const { id, title, description, url, cetagory } = item;
-  console.log(id, title, description, url, cetagory);
 
-  let updatingData: Record<string, string> = {};
-  if (title) updatingData.title = title;
-  if (description) updatingData.description = description;
-  if (url) updatingData.url = url;
-  if (cetagory) updatingData.url = cetagory;
+  const updatingData = { title, description, url, cetagory };
+  console.log({ title, description, url, cetagory });
+
   try {
-    const res = await axios.put(
+    console.log(import.meta.env.VITE_END_POINT);
+    const response = await fetch(
       `${import.meta.env.VITE_END_POINT}/skills/${id}`,
-      updatingData
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatingData),
+      }
     );
-    if (!res.data) throw new Error("Failed to update skill");
+
+    if (!response.ok) {
+      throw new Error(`Failed to update skill: ${response.statusText}`);
+    }
+
+    const data = await response.json();
     alert("Skill updated successfully!");
+    return data;
   } catch (err) {
-    alert(`error: ${err}`);
+    alert(`Error: ${err}`);
   }
-  return null;
 };
