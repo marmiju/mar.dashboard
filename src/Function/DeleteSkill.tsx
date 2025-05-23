@@ -1,5 +1,6 @@
 import axios from "axios";
 import React from "react";
+import { toast } from "react-toastify";
 
 type deleteprops = {
   id: string;
@@ -14,10 +15,9 @@ export const DeleteSkill: React.FC<deleteprops> = async ({ id }) => {
       throw new Error("Failed to delete skill");
     }
 
-    alert("Skill deleted successfully");
+    toast.success("Item Deleted Succesfully");
   } catch (error) {
-    console.error("Delete error:", error);
-    alert("Error deleting skill");
+    toast.error(JSON.stringify(error));
   }
   return null;
 };

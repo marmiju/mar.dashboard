@@ -33,7 +33,11 @@ export const WellCome = () => {
             <div className="w-full">
               <h1 className="bg-r p-2 rounded-t-md ">EXPERIENCES</h1>
               {experiences.map((data, index) => {
-                return <h1 className="poppins ">{data.designation}</h1>;
+                return (
+                  <h1 key={index} className="poppins ">
+                    {data.designation}
+                  </h1>
+                );
               })}
             </div>
           )}

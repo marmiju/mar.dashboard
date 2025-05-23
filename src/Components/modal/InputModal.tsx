@@ -4,7 +4,6 @@ import { skilltype } from "../shared/Skillsitems";
 import { skillsCetagory } from "../../Data/skillsCetagory";
 import { InputBox } from "../InputBox/InputBox";
 import { ImCross } from "react-icons/im";
-import { updateSkill } from "../../Function/UpdateSkill";
 
 type ModalProps = {
   isOpen: boolean;
@@ -13,48 +12,30 @@ type ModalProps = {
   title: string;
   message: string;
   item: skilltype;
+  handleCetagory: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  handleChenge: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => void;
+  formData: {
+    title: string;
+    description: string;
+    url: string;
+  };
 };
 
-export const UpdateModal: React.FC<ModalProps> = ({
+export const InputModal: React.FC<ModalProps> = ({
   isOpen,
   onClose,
+  onConfirm,
   title,
   message,
   item,
+  handleCetagory,
+  handleChenge,
+  formData,
 }) => {
   if (!isOpen) return null;
   const cetagory: string[] = skillsCetagory();
-  const [formData, setFormData] = useState({
-    title: item.title,
-    description: item.description ?? "",
-    url: item.url,
-  });
-  const [Cetagory, setCetagory] = useState(item.cetagory);
-
-  const handleChenge = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-  // handle cetagory
-  const handleCetagory = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setCetagory(e.currentTarget.value);
-  };
-  // Upadte Data
-  const Update = () => {
-    const id = item._id;
-    const title = formData.title;
-    const description = formData.description;
-    const cetagory = Cetagory;
-    const url = formData.url;
-    const data = { id, title, description, cetagory, url };
-    updateSkill(data);
-    onclose;
-  };
 
   return (
     <div className="fixed inset-0 transition-all bg-wite/50 duration-300 z-50 flex items-center justify-center  ">
@@ -74,7 +55,7 @@ export const UpdateModal: React.FC<ModalProps> = ({
         </div>
 
         <div className="mt-5">
-          <form onSubmit={Update}>
+          <form onSubmit={onConfirm}>
             <InputBox
               onchenge={handleChenge}
               initialVal={item.title}

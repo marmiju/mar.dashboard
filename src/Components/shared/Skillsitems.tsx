@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { Modal } from "../modal/deleteModal"; // import your modal
 import { DeleteSkill } from "../../Function/DeleteSkill";
-import { BiEdit, BiEditAlt } from "react-icons/bi";
-import { UpdateModal } from "../modal/Updatemodal";
+import { BiEditAlt } from "react-icons/bi";
+import { updateSkill } from "../../Function/UpdateSkill";
+import { InputModal } from "../modal/InputModal";
 
 export interface skilltype {
   _id: string;
   title: string;
-  description?: string;
+  description: string;
   url: string;
   cetagory: string;
 }
@@ -19,25 +20,62 @@ type propt = {
 export const Skillsitems: React.FC<propt> = ({ items }) => {
   const [isModalOpendelete, setIsModalOpendelete] = useState(false);
   const [isModalOpenupdate, setIsModalOpenupdate] = useState(false);
+  const [Cetagory, setCetagory] = useState(items.cetagory); //for handle cetagory
+  // ============form Start
+  const [formData, setFormData] = useState({
+    //handle from data
+    title: items.title,
+    description: items.description ?? "",
+    url: items.url,
+  });
+  const handleChenge = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  // ==================================================form End
 
   const openModaldelet = () => setIsModalOpendelete(true);
   const openModalUpdate = () => setIsModalOpenupdate(true);
   const closeModal = () => setIsModalOpenupdate(false);
 
+  const handleCetagory = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    //handle cetagory
+    setCetagory(e.currentTarget.value);
+  };
+
   const confirmDelete = () => {
     DeleteSkill({ id: items._id });
     closeModal();
   };
+  const Update = () => {
+    const id = items._id;
+    const title = formData.title;
+    const description = formData.description;
+    const cetagory = Cetagory;
+    const url = formData.url;
+    const data = { id, title, description, cetagory, url };
+    updateSkill(data);
+    onclose;
+  };
 
   return (
     <>
-      <UpdateModal
+      <InputModal
         isOpen={isModalOpenupdate}
         onClose={closeModal}
         title={"Update"}
         message={`Update Data Of : ${items.title}`}
-        onConfirm={() => {}}
+        onConfirm={Update}
         item={items}
+        handleCetagory={handleCetagory}
+        handleChenge={handleChenge}
+        formData={formData}
       />
       <Modal
         isOpen={isModalOpendelete}
