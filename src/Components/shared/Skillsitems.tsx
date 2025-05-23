@@ -42,7 +42,8 @@ export const Skillsitems: React.FC<propt> = ({ items }) => {
 
   const openModaldelet = () => setIsModalOpendelete(true);
   const openModalUpdate = () => setIsModalOpenupdate(true);
-  const closeModal = () => setIsModalOpenupdate(false);
+  const closeModalUpdate = () => setIsModalOpenupdate(false);
+  const closeModalDelete = () => setIsModalOpendelete(false);
 
   const handleCetagory = (e: React.ChangeEvent<HTMLSelectElement>) => {
     //handle cetagory
@@ -51,7 +52,7 @@ export const Skillsitems: React.FC<propt> = ({ items }) => {
 
   const confirmDelete = () => {
     DeleteSkill({ id: items._id });
-    closeModal();
+    closeModalDelete();
   };
   const Update = () => {
     const id = items._id;
@@ -61,25 +62,25 @@ export const Skillsitems: React.FC<propt> = ({ items }) => {
     const url = formData.url;
     const data = { id, title, description, cetagory, url };
     updateSkill(data);
-    onclose;
+    closeModalUpdate();
   };
 
   return (
     <>
       <InputModal
         isOpen={isModalOpenupdate}
-        onClose={closeModal}
+        onClose={closeModalUpdate}
         title={"Update"}
         message={`Update Data Of : ${items.title}`}
         onConfirm={Update}
-        item={items}
         handleCetagory={handleCetagory}
         handleChenge={handleChenge}
         formData={formData}
+        Cetagory={Cetagory}
       />
       <Modal
         isOpen={isModalOpendelete}
-        onClose={closeModal}
+        onClose={closeModalDelete}
         onConfirm={confirmDelete}
         id={items._id}
         title="Confirm Deletion"

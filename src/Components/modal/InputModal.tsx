@@ -1,6 +1,5 @@
 // Modal.tsx
 import React, { useState } from "react";
-import { skilltype } from "../shared/Skillsitems";
 import { skillsCetagory } from "../../Data/skillsCetagory";
 import { InputBox } from "../InputBox/InputBox";
 import { ImCross } from "react-icons/im";
@@ -8,10 +7,9 @@ import { ImCross } from "react-icons/im";
 type ModalProps = {
   isOpen: boolean;
   onClose: () => void;
-  onConfirm: () => void;
+  onConfirm: (e: any) => void;
   title: string;
   message: string;
-  item: skilltype;
   handleCetagory: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   handleChenge: (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -21,6 +19,7 @@ type ModalProps = {
     description: string;
     url: string;
   };
+  Cetagory: string;
 };
 
 export const InputModal: React.FC<ModalProps> = ({
@@ -29,13 +28,13 @@ export const InputModal: React.FC<ModalProps> = ({
   onConfirm,
   title,
   message,
-  item,
   handleCetagory,
   handleChenge,
   formData,
+  Cetagory,
 }) => {
   if (!isOpen) return null;
-  const cetagory: string[] = skillsCetagory();
+  const cetagories: string[] = skillsCetagory();
 
   return (
     <div className="fixed inset-0 transition-all bg-wite/50 duration-300 z-50 flex items-center justify-center  ">
@@ -51,14 +50,14 @@ export const InputModal: React.FC<ModalProps> = ({
             <h1 className="text-xl font-semibold">{title}</h1>
             <h1 className="text-sm text-black/70">{message}</h1>
           </div>
-          <img className="w-16" src={formData.url} alt={item.title} />
+          <img className="w-16" src={formData.url} alt={formData.title} />
         </div>
 
         <div className="mt-5">
           <form onSubmit={onConfirm}>
             <InputBox
               onchenge={handleChenge}
-              initialVal={item.title}
+              initialVal={formData.title}
               title={"tilte"}
               placeholder="Enter title"
               name="title"
@@ -66,7 +65,7 @@ export const InputModal: React.FC<ModalProps> = ({
             />
             <InputBox
               onchenge={handleChenge}
-              initialVal={item.description ?? ""}
+              initialVal={formData.description}
               title={"Description"}
               placeholder={`Enter Description`}
               name="description"
@@ -74,7 +73,7 @@ export const InputModal: React.FC<ModalProps> = ({
             />
             <InputBox
               onchenge={handleChenge}
-              initialVal={item.url}
+              initialVal={formData.url}
               title={"URL"}
               name="url"
               placeholder="Enter UrL"
@@ -85,10 +84,10 @@ export const InputModal: React.FC<ModalProps> = ({
                 className="text- bg-slate-200 px-3 py-1.5"
                 name="cetagory"
                 id="cetagory"
-                defaultValue={item.cetagory}
+                defaultValue={Cetagory}
                 onChange={handleCetagory}
               >
-                {cetagory.map((cetagory, index) => {
+                {cetagories.map((cetagory, index) => {
                   return (
                     <option
                       className="text-black bg-slate-200"

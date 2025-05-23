@@ -1,3 +1,5 @@
+import { toast } from "react-toastify";
+
 type SkillItem = {
   id: string;
   title: string;
@@ -26,13 +28,11 @@ export const updateSkill = async (item: SkillItem) => {
     );
 
     if (!response.ok) {
+      toast.error("Update Failed!");
       throw new Error(`Failed to update skill: ${response.statusText}`);
     }
-
+    toast.success("Data Updated Successfully");
     const data = await response.json();
-    alert("Skill updated successfully!");
     return data;
-  } catch (err) {
-    alert(`Error: ${err}`);
-  }
+  } catch (err) {}
 };
