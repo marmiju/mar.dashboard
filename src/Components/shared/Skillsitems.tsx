@@ -8,7 +8,7 @@ import { InputModal } from "../modal/InputModal";
 export interface skilltype {
   _id: string;
   title: string;
-  description: string;
+  description?: string;
   url: string;
   cetagory: string;
 }
