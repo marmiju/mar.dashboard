@@ -1,12 +1,5 @@
 import { useEffect, useState } from "react";
-export interface blog {
-  _id: any;
-  id: string;
-  title: string;
-  cover: string;
-  description: string;
-  date?: Date;
-}
+
 
 export const GetBlogs = () => {
   const [blogs, setBlogs] = useState([]);

@@ -1,4 +1,5 @@
-import { blog, GetBlogs } from "../../Data/GetBlogs";
+import { GetBlogs } from "../../Data/Blogs/GetBlogs";
+import { blog } from "../../Data/Blogs/type";
 import { SingleBlog } from "../shared/singleBlog";
 
 export const Blogs = () => {

@@ -6,21 +6,44 @@ import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { LexicalErrorBoundary } from "@lexical/react/LexicalErrorBoundary";
 import { Toolbar } from "./Toolbar";
 import { exampleTheme } from "./theme";
-import { SetStateAction, useState } from "react";
+import { $createParagraphNode, $createTextNode, $getRoot } from "lexical";
+import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
+import { toast } from "react-toastify";
 
 function onError(error: any) {
-  console.error(error);
+  toast.error(error);
 }
 
-export default function Editor() {
-  const [editorState, setEditorState] = useState();
-  function onChange(editorstate: any) {
-    setEditorState(editorstate);
-  }
+export default function Editor({
+  value,
+  onContentChange,
+}: {
+  value: string;
+  onContentChange?: (content: string) => void;
+}) {
   const initialConfig = {
     namespace: "MyEditor",
-    exampleTheme,
+    theme: exampleTheme,
     onError,
+    editorState: (editor: any) => {
+      editor.update(() => {
+        try {
+          const parsedState = editor.parseEditorState(value);
+          editor.setEditorState(parsedState);
+        } catch (e) {
+          alert("somrthing Went wrong!");
+        }
+      });
+    },
+  };
+
+  const handleChange = (editorState: any) => {
+    if (onContentChange) {
+      editorState.read(() => {
+        const json = JSON.stringify(editorState);
+        onContentChange(json);
+      });
+    }
   };
 
   return (
@@ -30,7 +53,7 @@ export default function Editor() {
         <RichTextPlugin
           contentEditable={
             <ContentEditable
-              className="focus:outline-none bg-white min-h-44 p-2 rounded"
+              className="focus:outline-none bg-slate-50 min-h-44 p-2 rounded"
               aria-placeholder={"Enter some text..."}
               placeholder={<p></p>}
             />
@@ -39,6 +62,7 @@ export default function Editor() {
         />
         <HistoryPlugin />
         <AutoFocusPlugin />
+        <OnChangePlugin onChange={handleChange} />
       </LexicalComposer>
     </div>
   );

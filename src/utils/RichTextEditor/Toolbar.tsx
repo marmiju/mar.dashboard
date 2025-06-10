@@ -6,12 +6,14 @@ export const Toolbar = () => {
   const [editor] = useLexicalComposerContext();
   const [isbold, setBold] = useState(false);
   const [isItalic, setItalic] = useState(false);
+  const [isCode, setCode] = useState(false);
 
   const updateToolbar = useCallback(() => {
     const selection = $getSelection();
     if ($isRangeSelection(selection)) {
       setBold(selection.hasFormat("bold"));
       setItalic(selection.hasFormat("italic"));
+      setCode(selection.hasFormat("code"));
     }
   }, []);
 
@@ -46,7 +48,7 @@ export const Toolbar = () => {
       </button>
       {/* Code */}
       <button
-        className="italic"
+        className={` ${isCode ? "bg-gray-200" : ""}`}
         onClick={() => {
           editor.dispatchCommand(FORMAT_TEXT_COMMAND, "code");
         }}
