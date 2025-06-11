@@ -8,18 +8,22 @@ export const SingleBlog = ({ blog }: { blog: blog }) => {
   return (
     <Link to={`/blog/${blog._id}`} state={{ blog }}>
       <div className="border p-2 border-slate-200 bg-white rounded">
-        <img
-          className="w-full h-44 object-cover"
-          src={
-            typeof blog.cover === "string"
-              ? blog.cover
-              : URL.createObjectURL(blog.cover)
-          }
-          alt="Blog Cover"
-        />
-        <p>{date}</p>
-        <p className="text-xl font-semibold">{blog.title}</p>
-        <div className="line-clamp-3 max-h-32 overflow-hidden">
+        {blog.cover && (
+          <img
+            className="w-full h-44 object-cover"
+            src={
+              typeof blog.cover === "string"
+                ? blog.cover
+                : blog.cover == null
+                ? "https://i.ibb.co/Z64hDbgD/Untitled-design-4.png"
+                : URL.createObjectURL(blog.cover)
+            }
+            alt="Blog Cover"
+          />
+        )}
+        <p className="text-sm text-gray-400">{date}</p>
+        <p className="text-xl font-semibold mb-2">{blog.title}</p>
+        <div className="line-clamp-3  overflow-hidden  truncate">
           <ReadOnlyEditor content={blog.description!} />
         </div>
       </div>

@@ -9,6 +9,7 @@ import { Skills } from "./Components/Screen/Skills";
 import { Experience } from "./Components/Screen/Experience";
 import { Blogs } from "./Components/Screen/Blogs";
 import { BlogDetails } from "./Components/Screen/BlogDetails";
+import { NewBlogs } from "./Components/Screen/NewBlogs";
 
 createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
@@ -22,6 +23,7 @@ createRoot(document.getElementById("root")!).render(
         <Route path="experiences" element={<Experience />} />
         <Route path="blogs" element={<Blogs />} />
         <Route path="/blog/:id" element={<BlogDetails />} />
+        <Route path="/addblogs" element={<NewBlogs />} />
       </Route>
     </Routes>
   </BrowserRouter>

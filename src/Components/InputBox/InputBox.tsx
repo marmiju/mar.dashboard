@@ -1,10 +1,11 @@
+import { File } from "buffer";
 import React from "react";
 
 interface inputFieldType {
   title: string;
   placeholder: string;
   type: string;
-  initialVal: String;
+  initialVal?: string | File;
   name: string;
   onchenge: (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>

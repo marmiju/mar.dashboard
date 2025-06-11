@@ -6,12 +6,12 @@ import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { LexicalErrorBoundary } from "@lexical/react/LexicalErrorBoundary";
 import { Toolbar } from "./Toolbar";
 import { exampleTheme } from "./theme";
-import { $createParagraphNode, $createTextNode, $getRoot } from "lexical";
 import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
 import { toast } from "react-toastify";
+import { EditorState, LexicalEditor } from "lexical";
 
-function onError(error: any) {
-  toast.error(error);
+function onError(error: Error) {
+  toast.error(error.message || "An error occurred in the editor");
 }
 
 export default function Editor({
@@ -25,19 +25,19 @@ export default function Editor({
     namespace: "MyEditor",
     theme: exampleTheme,
     onError,
-    editorState: (editor: any) => {
+    editorState: (editor: LexicalEditor) => {
       editor.update(() => {
         try {
           const parsedState = editor.parseEditorState(value);
           editor.setEditorState(parsedState);
         } catch (e) {
-          alert("somrthing Went wrong!");
+          console.error("Failed to parse editor state:", e);
         }
       });
     },
   };
 
-  const handleChange = (editorState: any) => {
+  const handleChange = (editorState: EditorState) => {
     if (onContentChange) {
       editorState.read(() => {
         const json = JSON.stringify(editorState);

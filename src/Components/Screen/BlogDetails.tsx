@@ -10,8 +10,12 @@ export const BlogDetails = () => {
 
   const [title, setTitle] = useState(blog?.title || "");
   const [description, setDescription] = useState(blog?.description || "");
-  const [cover, setCover] = useState<any>(blog?.cover || "");
-  const [newImage, setNewImage] = useState<File>(cover);
+  const [cover, setCover] = useState<string>(
+    typeof blog.cover === "string" ? blog.cover : ""
+  );
+  const [newImage, setNewImage] = useState<File | null>(
+    blog.cover instanceof File ? blog.cover : null
+  );
 
   if (!blog) return <p>Blog not found!</p>;
 

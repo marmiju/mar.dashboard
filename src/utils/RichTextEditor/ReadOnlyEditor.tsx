@@ -26,7 +26,7 @@ export default function ReadOnlyEditor({ content }: { content: string }) {
       <RichTextPlugin
         contentEditable={
           <ContentEditable
-            className="focus:outline-none bg-slate-50 min-h-44 p-2 rounded"
+            className="focus:outline-none text-sm text-black/70"
             aria-placeholder={"Enter some text..."}
             placeholder={<p></p>}
           />
