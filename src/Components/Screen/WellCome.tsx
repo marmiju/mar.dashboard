@@ -1,8 +1,6 @@
 import { useProfileData } from "../../Data/ProfileData";
 import { ExperiencesData } from "../../Data/ExperiencesData";
-
 import { DashProfile } from "../shared/DashProfile";
-import { Skillsitems } from "../shared/Skillsitems";
 import { Skills } from "./Skills";
 
 export const WellCome = () => {
