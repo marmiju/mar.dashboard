@@ -31,8 +31,8 @@ const AddSkill = () => {
     }));
   };
   // handleConfirm
-  const onConfirm = (e: any) => {
-    // e.preventDefault();
+  const onConfirm = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
     SubmitAddSkill(
       formData.title,
       formData.description,

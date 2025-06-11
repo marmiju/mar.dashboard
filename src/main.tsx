@@ -1,8 +1,7 @@
-import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import { DashBoard_Layout } from "./dashBoard/DashBoard_Layout";
-import { BrowserRouter, Route, Router, Routes } from "react-router";
+import { BrowserRouter, Route, Routes } from "react-router";
 import { WellCome } from "./Components/Screen/WellCome";
 import { Profile } from "./Components/Screen/Profile";
 import { Skills } from "./Components/Screen/Skills";

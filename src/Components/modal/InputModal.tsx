@@ -1,5 +1,5 @@
 // Modal.tsx
-import React, { useState } from "react";
+import React from "react";
 import { skillsCetagory } from "../../Data/skillsCetagory";
 import { InputBox } from "../InputBox/InputBox";
 import { ImCross } from "react-icons/im";

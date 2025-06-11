@@ -1,5 +1,4 @@
 import { useProfileData } from "../../Data/ProfileData";
-import { useSkills } from "../../Data/SkillsData";
 import { ExperiencesData } from "../../Data/ExperiencesData";
 
 import { DashProfile } from "../shared/DashProfile";
