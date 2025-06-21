@@ -1,6 +1,7 @@
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { $getSelection, $isRangeSelection, FORMAT_TEXT_COMMAND } from "lexical";
 import { useCallback, useEffect, useState } from "react";
+import ColorPlugIn from "../plugin/ColorPlugIn";
 
 export const Toolbar = () => {
   const [editor] = useLexicalComposerContext();
@@ -26,7 +27,7 @@ export const Toolbar = () => {
   }, []);
 
   return (
-    <div className="bg-white p-2 mb-2 rounded space-x-2 text-lg">
+    <div className="bg-white flex flex-wrap p-2 mb-2 rounded space-x-2 text-lg">
       {/* bold */}
       <button
         className={`font-bold px-2 rounded ${isbold ? "bg-gray-200" : ""}`}
@@ -46,6 +47,7 @@ export const Toolbar = () => {
       >
         i
       </button>
+      {/* underline */}
       {/* Code */}
       <button
         className={` ${isCode ? "bg-gray-200" : ""}`}
@@ -54,7 +56,10 @@ export const Toolbar = () => {
         }}
       >
         {`</>`}
-      </button>
+        </button>
+        <ColorPlugIn/>
+      
+
     </div>
   );
 };

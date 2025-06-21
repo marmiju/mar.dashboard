@@ -9,4 +9,5 @@ export const exampleTheme = {
     underline: "editor-textUnderline",
     underlineStrikethrough: "editor-textUnderlineStrikethrough",
   },
+  
 };
