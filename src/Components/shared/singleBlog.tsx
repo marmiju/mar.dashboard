@@ -1,9 +1,7 @@
 import { Link } from "react-router";
 import { blog } from "../../Data/Blogs/type";
 import ReadOnlyEditor from "../../utils/RichTextEditor/ReadOnlyEditor";
-import { FiDelete } from "react-icons/fi";
-import { MdDeleteSweep } from "react-icons/md";
-import { CgEditMarkup } from "react-icons/cg";
+
 
 export const SingleBlog = ({ blog }: { blog: blog }) => {
   console.log("is:", blog._id);
