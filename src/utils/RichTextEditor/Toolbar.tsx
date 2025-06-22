@@ -2,7 +2,8 @@ import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext
 import { $getSelection, $isRangeSelection, FORMAT_TEXT_COMMAND } from "lexical";
 import { useCallback, useEffect, useState } from "react";
 import ColorPlugIn from "../plugin/ColorPlugIn";
-import Underline from "../plugin/Underline";
+import UnderLine from "../plugin/Underline";
+
 
 export const Toolbar = () => {
   const [editor] = useLexicalComposerContext();
@@ -49,7 +50,7 @@ export const Toolbar = () => {
         i
       </button>
       {/* underline */}
-      <Underline/>
+        <UnderLine/>
       {/* Code */}
       <button
         className={` ${isCode ? "bg-gray-200" : ""}`}
