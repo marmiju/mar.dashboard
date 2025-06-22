@@ -9,6 +9,9 @@ import { exampleTheme } from "./theme";
 import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
 import { toast } from "react-toastify";
 import { EditorState, LexicalEditor } from "lexical";
+import { LinkNode } from "@lexical/link";
+import { LinkPlugin } from "@lexical/react/LexicalLinkPlugin";
+
 
 function onError(error: Error) {
   toast.error(error.message || "An error occurred in the editor");
@@ -24,6 +27,7 @@ export default function Editor({
   const initialConfig = {
     namespace: "MyEditor",
     theme: exampleTheme,
+    nodes: [LinkNode],
     onError,
     editorState: (editor: LexicalEditor) => {
       editor.update(() => {
@@ -62,6 +66,7 @@ export default function Editor({
           ErrorBoundary={LexicalErrorBoundary}
         />
         <HistoryPlugin />
+        <LinkPlugin/>
         <AutoFocusPlugin />
         <OnChangePlugin onChange={handleChange} />
       </LexicalComposer>

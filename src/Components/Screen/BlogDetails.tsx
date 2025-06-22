@@ -73,7 +73,7 @@ export const BlogDetails = () => {
           className="w-full border p-2 rounded"
         />
 
-        <div className="grid grid-cols-12">
+        <div className="flex md:grid flex-col-reverse md:grid-cols-12">
           <div className="col-span-10">
             <Editor
               value={description}
