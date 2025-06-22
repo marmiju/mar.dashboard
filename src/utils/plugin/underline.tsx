@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { CgFormatUnderline } from "react-icons/cg";
 
 
-const Underline = () => {
+const UnderLine = () => {
     const [isunderline, setUnderline] = useState(false)
     const [editor] = useLexicalComposerContext()
 
@@ -42,4 +42,4 @@ const Underline = () => {
     );
 };
 
-export default Underline;
+export default UnderLine;
