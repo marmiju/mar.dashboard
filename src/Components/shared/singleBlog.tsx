@@ -1,13 +1,16 @@
 import { Link } from "react-router";
 import { blog } from "../../Data/Blogs/type";
 import ReadOnlyEditor from "../../utils/RichTextEditor/ReadOnlyEditor";
+import { FiDelete } from "react-icons/fi";
+import { MdDeleteSweep } from "react-icons/md";
+import { CgEditMarkup } from "react-icons/cg";
 
 export const SingleBlog = ({ blog }: { blog: blog }) => {
   console.log("is:", blog._id);
   const date = new Date(blog.date!).toString().slice(3, 15);
   return (
     <Link to={`/blog/${blog._id}`} state={{ blog }}>
-      <div className="border p-2 border-slate-200 bg-white rounded">
+      <div className="border reletive p-2 border-slate-200 bg-white rounded group">
         {blog.cover && (
           <img
             className="w-full h-44 object-cover"
@@ -21,11 +24,13 @@ export const SingleBlog = ({ blog }: { blog: blog }) => {
             alt="Blog Cover"
           />
         )}
+        
         <p className="text-sm text-gray-400">{date}</p>
         <p className="text-xl font-semibold mb-2">{blog.title}</p>
         <div className="line-clamp-3  overflow-hidden  truncate">
           <ReadOnlyEditor content={blog.description!} />
         </div>
+       
       </div>
     </Link>
   );

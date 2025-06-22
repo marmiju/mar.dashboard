@@ -65,8 +65,8 @@ export const NewBlogs = () => {
             <button
               onClick={handleAddDAta}
               className="
-              relative rounded bg-white text-black px-6 py-1
-              hover:bg-black hover:text-white
+              relative rounded bg-white text-slate-300 px-6 py-1
+               hover:text-black
               after:content-[''] after:absolute after:left-0 after:right-0 after:-bottom-0 after:h-0.5
               after:bg-black after:scale-x-0 after:origin-left
               after:transition-transform after:duration-300

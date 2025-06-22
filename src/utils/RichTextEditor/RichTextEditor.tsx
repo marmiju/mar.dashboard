@@ -47,7 +47,7 @@ export default function Editor({
   };
 
   return (
-    <div className="mr-2">
+    <div className="mr-2 caret-pink-500">
       <LexicalComposer initialConfig={initialConfig}>
         <Toolbar />
         <RichTextPlugin
@@ -58,6 +58,7 @@ export default function Editor({
               placeholder={<p></p>}
             />
           }
+          placeholder={<div className="text-gray-400">Type something...</div>}
           ErrorBoundary={LexicalErrorBoundary}
         />
         <HistoryPlugin />

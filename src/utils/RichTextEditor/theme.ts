@@ -6,7 +6,7 @@ export const exampleTheme = {
     strikethrough: "editor-textStrikethrough",
     subscript: "editor-textSubscript",
     superscript: "editor-textSuperscript",
-    underline: "editor-textUnderline",
+    underline: "underline px-2",
     underlineStrikethrough: "editor-textUnderlineStrikethrough",
   },
   
