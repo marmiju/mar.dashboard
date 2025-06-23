@@ -9,8 +9,9 @@ import { exampleTheme } from "./theme";
 import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
 import { toast } from "react-toastify";
 import { EditorState, LexicalEditor } from "lexical";
-import { LinkNode } from "@lexical/link";
-import { LinkPlugin } from "@lexical/react/LexicalLinkPlugin";
+import { ListNode, ListItemNode } from "@lexical/list"
+import { ListPlugin } from "@lexical/react/LexicalListPlugin";
+
 
 
 function onError(error: Error) {
@@ -27,7 +28,8 @@ export default function Editor({
   const initialConfig = {
     namespace: "MyEditor",
     theme: exampleTheme,
-    nodes: [LinkNode],
+    nodes: [ListNode, ListItemNode],
+
     onError,
     editorState: (editor: LexicalEditor) => {
       editor.update(() => {
@@ -53,10 +55,13 @@ export default function Editor({
   return (
     <div className="mr-2 caret-pink-500">
       <LexicalComposer initialConfig={initialConfig}>
-        <Toolbar />
+        {
+          window.location.pathname.startsWith('/blog/') && <Toolbar />
+        }
         <RichTextPlugin
           contentEditable={
             <ContentEditable
+              contentEditable='true'
               className="focus:outline-none bg-slate-50 min-h-44 p-2 rounded"
               aria-placeholder={"Enter some text..."}
               placeholder={<p></p>}
@@ -66,7 +71,7 @@ export default function Editor({
           ErrorBoundary={LexicalErrorBoundary}
         />
         <HistoryPlugin />
-        <LinkPlugin/>
+        <ListPlugin />
         <AutoFocusPlugin />
         <OnChangePlugin onChange={handleChange} />
       </LexicalComposer>

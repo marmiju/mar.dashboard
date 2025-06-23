@@ -1,6 +1,5 @@
 import { Link } from "react-router";
 import { blog } from "../../Data/Blogs/type";
-import ReadOnlyEditor from "../../utils/RichTextEditor/ReadOnlyEditor";
 
 
 export const SingleBlog = ({ blog }: { blog: blog }) => {
@@ -25,9 +24,7 @@ export const SingleBlog = ({ blog }: { blog: blog }) => {
         
         <p className="text-sm text-gray-400">{date}</p>
         <p className="text-xl font-semibold mb-2">{blog.title}</p>
-        <div className="line-clamp-3  overflow-hidden  truncate">
-          <ReadOnlyEditor content={blog.description!} />
-        </div>
+        
        
       </div>
     </Link>

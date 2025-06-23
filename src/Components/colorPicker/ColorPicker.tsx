@@ -1,7 +1,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
-import { IconButton } from "../Button/IconButton";
 import { SketchPicker } from "react-color";
+import IconButton from "../Button/IconButton";
 
 interface ColorpickerProps {
   icon: React.ReactNode;
@@ -30,20 +30,17 @@ const ColorPicker = ({ icon, color, onChange }: ColorpickerProps) => {
     };
   }, [isOpen]);
 
-  const item = {
-    icon: icon,
-    title: color,
-  };
+
 
   return (
-    <div className="relative inline-block" ref={ref}>
+    <div className="relative flex flex-wrap items-start justify-start space-y-1" ref={ref}>
   <div
     onMouseDown={(e) => {
       e.preventDefault(); 
       setIsOpen(!isOpen);
     }}
   >
-    <IconButton item={item} color= {color} />
+    <IconButton icon={icon}/>
   </div>
   {isOpen && (
     <div className="absolute z-50">

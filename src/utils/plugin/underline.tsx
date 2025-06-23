@@ -1,7 +1,8 @@
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { $getSelection, $isRangeSelection, FORMAT_TEXT_COMMAND } from "lexical";
 import { useCallback, useEffect, useState } from "react";
-import { CgFormatUnderline } from "react-icons/cg";
+import { FaUnderline } from "react-icons/fa6";
+import IconButton from "../../Components/Button/IconButton";
 
 
 const UnderLine = () => {
@@ -36,7 +37,7 @@ const UnderLine = () => {
 
                 }}
                 className={`${isunderline ? 'bg-slate-200' : ''}`}>
-                <CgFormatUnderline />
+                 <IconButton icon={<FaUnderline/>}/>
             </button>
         </>
     );

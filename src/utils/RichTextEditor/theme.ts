@@ -9,5 +9,13 @@ export const exampleTheme = {
     underline: "underline px-2",
     underlineStrikethrough: "editor-textUnderlineStrikethrough",
   },
+  list: {
+    ul: 'list-disc ml-4',
+    ol: 'list-decimal ml-4',
+    listitem: 'ml-2',
+    nested: {
+      listitem: 'ml-6',
+    },
+  },
   
 };

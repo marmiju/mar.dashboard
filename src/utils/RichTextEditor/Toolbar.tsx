@@ -2,7 +2,11 @@ import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext
 import { $getSelection, $isRangeSelection, FORMAT_TEXT_COMMAND } from "lexical";
 import { useCallback, useEffect, useState } from "react";
 import ColorPlugIn from "../plugin/ColorPlugIn";
-// import UnderLine from "../plugin/UnderLine";
+import UnderLine from "../plugin/UnderLine";
+import { FaBold } from "react-icons/fa6";
+import { FaCode, FaItalic } from "react-icons/fa6";
+import IconButton from "../../Components/Button/IconButton";
+import ListButtonsPlugin from "../plugin/ListButtonplugin";
 
 
 
@@ -30,49 +34,44 @@ export const Toolbar = () => {
   }, []);
 
   return (
-    <div className="bg-white flex flex-wrap p-2 mb-2 rounded space-x-2 text-lg">
+    <div className="bg-white flex flex-wrap p-2 mb-2 rounded space-x-2  text-lg">
       {/* bold */}
       <button
-        className={`font-bold px-2 rounded ${isbold ? "bg-gray-200" : ""}`}
+        className={`font-bold  rounded ${isbold ? "bg-gray-200" : ""}`}
         onClick={() => {
           setBold(!!!isbold);
           editor.dispatchCommand(FORMAT_TEXT_COMMAND, "bold");
         }}
       >
-        B
+        <IconButton icon={<FaBold />} />
       </button>
       {/* italic */}
       <button
-        className={`italic px-2 ${isItalic ? "bg-gray-200" : ""}`}
+        className={`italic rounded  ${isItalic ? "bg-gray-200" : ""}`}
         onClick={() => {
           editor.dispatchCommand(FORMAT_TEXT_COMMAND, "italic");
         }}
       >
-        i
+        <IconButton icon={<FaItalic />} />
       </button>
 
-
       {/* underline */}
-        {/* <UnderLine/> */}
-
-
-       
-
-
+      <UnderLine />
 
       {/* Code */}
       <button
-        className={` ${isCode ? "bg-gray-200" : ""}`}
+        className={` rounded ${isCode ? "bg-gray-200" : ""}`}
         onClick={() => {
           editor.dispatchCommand(FORMAT_TEXT_COMMAND, "code");
         }}
       >
-        {`</>`}
-        </button>
-        <ColorPlugIn/>
-         {/* linkPlugIn */}
+        <IconButton icon={<FaCode />} />
+      </button>
+      <ColorPlugIn />
+      {/* list */}
+      <ListButtonsPlugin/>
 
-    
+
     </div>
   );
 };

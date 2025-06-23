@@ -1,4 +1,9 @@
 import {
+  ListItemNode,
+  ListNode,
+} from '@lexical/list';
+
+import {
   LexicalComposer,
   InitialConfigType,
 } from "@lexical/react/LexicalComposer";
@@ -8,14 +13,17 @@ import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { LexicalErrorBoundary } from "@lexical/react/LexicalErrorBoundary";
 import { exampleTheme } from "./theme";
 import { useMemo } from "react";
+import { ListPlugin } from '@lexical/react/LexicalListPlugin';
 
 export default function ReadOnlyEditor({ content }: { content: string }) {
   const initialConfig: InitialConfigType = useMemo(
     () => ({
       namespace: "ReadOnlyEditor",
+      nodes:[ListNode,ListItemNode],
+      
       theme: exampleTheme,
       onError: (error) => console.error(error),
-      editable: false,
+      editable: true,
       editorState: content, // JSON string from database
     }),
     [content]
@@ -33,6 +41,7 @@ export default function ReadOnlyEditor({ content }: { content: string }) {
         }
         ErrorBoundary={LexicalErrorBoundary}
       />
+      <ListPlugin/>
       <HistoryPlugin />
     </LexicalComposer>
   );
